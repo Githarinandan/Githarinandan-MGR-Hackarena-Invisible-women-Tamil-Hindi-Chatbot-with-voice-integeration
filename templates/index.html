@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2ed">
+  <title>The Invisible Women</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body class="landing-page">
+  <main class="landing-card">
+    <div class="eyebrow-pill">The Invisible Women</div>
+    <div class="micro-label">VOICE · TEXT · SCREENSHOT</div>
+    <h1>AI that listens,<br>reads & replies<br>in your language.</h1>
+    <p class="landing-copy">Pick a language. Speak naturally or type. Upload a screenshot when words are not enough.</p>
+
+    <div class="language-grid">
+      <a class="language-card tamil-card" href="{{ url_for('chat_page', language='tamil') }}">
+        <div>
+          <div class="native-language">தமிழ்</div>
+          <div class="language-subtitle">Tamil assistant</div>
+        </div>
+        <span class="start-link">Start chat <span>→</span></span>
+      </a>
+      <a class="language-card hindi-card" href="{{ url_for('chat_page', language='hindi') }}">
+        <div>
+          <div class="native-language">हिन्दी</div>
+          <div class="language-subtitle">Hindi assistant</div>
+        </div>
+        <span class="start-link">Start chat <span>→</span></span>
+      </a>
+    </div>
+
+    <div class="landing-features">
+      <span>• One-tap voice recording</span>
+      <span>• Screenshot understanding</span>
+      <span>• Optional narration + repeat</span>
+    </div>
+  </main>
+</body>
+</html>

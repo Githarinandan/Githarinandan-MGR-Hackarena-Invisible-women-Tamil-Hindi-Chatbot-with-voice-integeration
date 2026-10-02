@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2ed">
+  <title>The Invisible Women — {{ language_english }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body
+  class="chat-page"
+  data-language-code="{{ language_code }}"
+  data-language-route="{{ 'tamil' if language_code == 'ta-IN' else 'hindi' }}"
+  data-max-record-seconds="{{ max_record_seconds }}"
+  data-max-history-messages="{{ max_history_messages }}"
+>
+  <div class="chat-site">
+    <header class="site-header">
+      <a class="site-brand" href="{{ url_for('index') }}">The Invisible Women</a>
+      <div class="header-controls">
+        {% if language_code == 'ta-IN' %}
+          <a class="switch-link" href="{{ url_for('chat_page', language='hindi') }}">Switch to Hindi</a>
+        {% else %}
+          <a class="switch-link" href="{{ url_for('chat_page', language='tamil') }}">Switch to Tamil</a>
+        {% endif %}
+        <label class="narrate-control">
+          <span class="toggle-switch">
+            <input id="narrateToggle" type="checkbox" aria-label="Narrate replies">
+            <span class="toggle-track"><span class="toggle-knob"></span></span>
+          </span>
+          <span>Narrate</span>
+        </label>
+      </div>
+    </header>
+
+    <main class="chat-card">
+      <section class="chat-heading">
+        <div>
+          <div class="micro-label">{{ language_english.upper() }} ASSISTANT</div>
+          <h1>Ask anything.</h1>
+          <p>Type, speak, or attach a screenshot. Replies stay in {{ language_english }}.</p>
+        </div>
+        <div class="ready-state"><span></span> Ready</div>
+      </section>
+
+      <section id="messages" class="messages" aria-live="polite"></section>
+
+      <div id="emptyState" class="empty-state">
+        <strong>{{ greeting }}</strong>
+        <span>{{ welcome }}</span>
+      </div>
+
+      <section class="composer-area">
+        <div id="attachmentPreview" class="attachment-preview hidden"></div>
+        <form id="chatForm" class="composer">
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+          <button type="button" id="micBtn" class="composer-icon mic-btn" aria-label="Record voice" title="Record voice">⌄</button>
+          <textarea id="messageInput" rows="1" placeholder="{{ placeholder }}"></textarea>
+          <button type="button" id="attachBtn" class="composer-icon attach-btn" aria-label="Attach screenshot" title="Attach screenshot">+</button>
+          <button type="submit" id="sendBtn" class="send-btn" aria-label="Send" title="Send">→</button>
+        </form>
+        <div class="composer-meta">
+          <span id="statusText">Voice is off</span>
+          <span>Max recording: {{ max_record_seconds }}s</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer-note">Gemini for reasoning · Sarvam for Indian speech · Chat stays in this browser</div>
+  </div>
+  <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
